@@ -14,8 +14,8 @@ router.get('/', isAdmin, function(req, res){//Pagina Principal do Admin
     res.render('index')
 })
 
-router.get('/categorias', isAdmin, function(req, res){
-    Categoria.find()/*.sort({date: 'desc'}) */.then((categorias)=>{
+router.get('/categorias', isAdmin, function(req, res){//Lista de categorias para o admin
+    Categoria.find()/*.sort({date: 'desc'}) (caso queira ordenar pelo mais recente)*/.then((categorias)=>{
         res.render('admin/categorias', {categorias: categorias})
     }).catch((err)=>{
         req.flash('error_msg', 'Erro ao Carregar as Categorias\n'+ err);
@@ -23,11 +23,12 @@ router.get('/categorias', isAdmin, function(req, res){
 })
 
 router.get('/categorias/add', isAdmin, function(req, res){
+/*Essa rota irá direcionar para o formulario de adição de categorias*/
     res.render('admin/addcategorias')
 })
 
 router.post('/categorias/nova', isAdmin, function(req, res){
-    
+/*Essa rota irá realizar a validação do formulario e irá adicionar ao Banco de Dados*/
     var erros = []
 
     if(!req.body.nome || req.body.nome == undefined || req.body.nome == null){
@@ -39,11 +40,11 @@ router.post('/categorias/nova', isAdmin, function(req, res){
     if(erros.length > 0){
         res.render('admin/addcategorias', {erros: erros})
     }else{
-        const novaCategoria= {
+        const novaCategoria= {//essa constante recebe os dados válidos do formularo
             nome: req.body.nome,
             slug: req.body.slug
         }
-    
+        //E então, é criado um novo Objeto de banco de dados com as informações da constante, e este é salvo no Banco.
         new Categoria(novaCategoria).save().then(() => {
             req.flash("success_msg", "Categoria Criada com Suceesso")
             res.redirect('/admin/categorias')

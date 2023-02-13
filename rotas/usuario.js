@@ -22,7 +22,6 @@ router.post('/login', (req, res, next)=>{
             failureFlash: true,
         })(req, res, next)
     }else{
-        console.log('aaaaaaaa');
         passport.authenticate('local', {
             successRedirect: '/',
             failureRedirect: '/usuario/registro',
