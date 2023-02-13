@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color: rgb(39, 28, 2);
+  color: white;
+}</style>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog NodeJS</title>
+</head>
+<body>
+      {{#if user.isAdmin}}
+      {{>_navbarAdmin}}
+      {{else}}
+      {{>_navbar}}
+
+      {{/if}}
+    <div class="container mt-4">
+      {{#if error}}
+      <div class="alert alert-danger">{{error}}</div>
+      {{else}}
+
+      {{/if}}
+         {{>_msg}}
+         {{{body}}}
+    </div>
+<footer>
+  <p>Pague um Café pra Jow<br>
+  Pix: 71 9 9991 6129</p>
+</footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="/js/bootstrap.js" ></script>
+</html>

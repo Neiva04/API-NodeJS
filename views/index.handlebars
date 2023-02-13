@@ -1,0 +1,58 @@
+{{#if user.isAdmin}}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Seja Bem Vind@ Admin: {{user.login}}</h1>
+    <p class="lead"></p>
+    <small>Curso com <a href="https://www.youtube.com/@GuiadoProgramador">Victor Lima</a> no YouTube</small>
+  </div>
+</div>
+{{else}}
+{{#if user}}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Seja Bem Vind@: {{user.login}}</h1>
+    <p class="lead">Este é um API Feito em JavaScript enquanto o dba Joseph aprende JS por meio de node</p>
+    <small>Curso com <a href="https://www.youtube.com/@GuiadoProgramador">Victor Lima</a> no YouTube</small>
+  </div>
+</div>
+{{else}}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Seja Bem Vind@</h1>
+    <p class="lead">Este é um API Feito em JavaScript enquanto o dba Joseph aprende JS por meio de node</p>
+    <small>Curso de Node.js com <a href="https://www.youtube.com/@GuiadoProgramador">Victor Lima</a> no YouTube</small>
+  </div>
+</div>
+{{/if}}
+{{/if}}
+
+
+
+
+<h2>Postagens Recentes</h2>
+{{#each postagens}}
+<div class="card mt-4">
+    <div class="card-body">
+        <h4>{{titulo}}</h4>
+        <p>Descrição: {{descricao}}</p><br>
+        <a href="/postagens/{{categoria.slug}}">
+        <small>{{categoria.nome}}</small><br>
+        </a>
+        <small>{{date}}</small><br>
+        <a href="/postagem/{{slug}}"><button class="btn btn-info mt-2">Leia Mais</button></a>
+        <br>
+    </div>
+</div>
+{{else}}
+<div class="card mt-4">
+    <div class="card-body">
+        <h4>Sem Postagens recentes :(</h4>
+        <p>Citação gratuita: “Ler um bom livro é como conversar com as melhores mentes do passado.”</p><br>
+        <small>- René Descartes</small><br>
+        <small>(1596-1650)</small>
+        <br>
+        <a href="/admin/postagens/add"><button class="btn btn-primary mt-4">Add uma Postagem</button></a>
+    </div>
+</div>
+
+{{/each}}

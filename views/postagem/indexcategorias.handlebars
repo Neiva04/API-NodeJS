@@ -1,0 +1,24 @@
+{{#each postagens}}
+<div class="card mt-4">
+    <div class="card-body">
+        <h4>{{titulo}}</h4>
+        <p>Descrição: {{descricao}}</p><br>
+        <small>{{categoria.nome}}</small><br>
+        <small>{{date}}</small><br>
+        <a href="/postagem/{{slug}}"><button class="btn btn-info mt-2">Leia Mais</button></a>
+        <br>
+    </div>
+</div>
+{{else}}
+<div class="card mt-4">
+    <div class="card-body">
+        <h4>Sem Postagens recentes :(</h4>
+        <p>Citação gratuita: “Ler um bom livro é como conversar com as melhores mentes do passado.”</p><br>
+        <small>- René Descartes</small><br>
+        <small>(1596-1650)</small>
+        <br>
+        <a href="/admin/postagens/add"><button class="btn btn-primary mt-4">Add uma Postagem</button></a>
+    </div>
+</div>
+
+{{/each}}
